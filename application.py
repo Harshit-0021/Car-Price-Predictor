@@ -8,8 +8,6 @@ from model.predict import preprocess_input, predict_price
 app = Flask(__name__)
 CORS(app)
 
-app.run(debug=True, host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
-
 model = load_model()
 print("✅ Model loaded successfully.")
 
@@ -31,5 +29,5 @@ def predict():
         return jsonify({'error': str(e)}), 400
 
 if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
     print(f"📁 Running in: {os.getcwd()}")
-    app.run(debug=True)
