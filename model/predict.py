@@ -1,5 +1,5 @@
 import pandas as pd
-from CarPricePredictor.preprocess.preprocessing import null_fill
+from preprocess.preprocessing import null_fill
 
 EXPECTED_COLUMNS = [
     'Company', 'Model', 'Year', 'Kilometer', 'Fuel Type',
