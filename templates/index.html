@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Predictor - AI-Powered Vehicle Valuation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-car icon-gradient"></i>
+                    <h1>CarValue<span class="highlight">AI</span></h1>
+                </div>
+                <p class="subtitle">Get accurate car price predictions powered by machine learning</p>
+            </div>
+        </header>
+
+        <!-- Main Form Section -->
+        <main class="main-content">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Vehicle Details</h2>
+                    <p>Fill in your car's information to get an instant price prediction</p>
+                </div>
+
+                <form id="predictionForm" class="prediction-form">
+                    <!-- Row 1: Company and Model -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="company" class="form-label">
+                                <i class="fas fa-building"></i>
+                                Company
+                            </label>
+                            <select id="company" name="company" class="form-select" required>
+                                <option value="">Select Company</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="model" class="form-label">
+                                <i class="fas fa-car-side"></i>
+                                Model
+                            </label>
+                            <select id="model" name="model" class="form-select" required disabled>
+                                <option value="">Select Model</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Year and Kilometers -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="year" class="form-label">
+                                <i class="fas fa-calendar"></i>
+                                Manufacturing Year
+                            </label>
+                            <input type="number" id="year" name="Year" class="form-input"
+                                   min="1980" max="2024" placeholder="e.g., 2020" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="kilometer" class="form-label">
+                                <i class="fas fa-road"></i>
+                                Kilometers Driven
+                            </label>
+                            <input type="number" id="kilometer" name="Kilometer" class="form-input"
+                                   min="0" placeholder="e.g., 50000" required>
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Fuel Type and Transmission -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fuelType" class="form-label">
+                                <i class="fas fa-gas-pump"></i>
+                                Fuel Type
+                            </label>
+                            <select id="fuelType" name="fuelType" class="form-select" required>
+                                <option value="">Select Fuel Type</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="transmission" class="form-label">
+                                <i class="fas fa-cogs"></i>
+                                Transmission
+                            </label>
+                            <select id="transmission" name="transmission" class="form-select" required>
+                                <option value="">Select Transmission</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Row 4: Location and Color -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="location" class="form-label">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Location
+                            </label>
+                            <select id="location" name="location" class="form-select" required>
+                                <option value="">Select Location</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="color" class="form-label">
+                                <i class="fas fa-palette"></i>
+                                Color
+                            </label>
+                            <select id="color" name="color" class="form-select" required>
+                                <option value="">Select Color</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Row 5: Owner and Seating -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="owner" class="form-label">
+                                <i class="fas fa-user"></i>
+                                Owner Number
+                            </label>
+                            <select id="owner" name="owner" class="form-select" required>
+                                <option value="">Select Owner</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="seatingCapacity" class="form-label">
+                                <i class="fas fa-users"></i>
+                                Seating Capacity
+                            </label>
+                            <select id="seatingCapacity" name="Seating Capacity" class="form-select" required>
+                                <option value="">Select Seating</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Row 6: Engine CC and Fuel Tank -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="engineCC" class="form-label">
+                                <i class="fas fa-tachometer-alt"></i>
+                                Engine CC
+                            </label>
+                            <input type="number" id="engineCC" name="Engine_cc" class="form-input"
+                                   min="500" max="8000" placeholder="e.g., 1500" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fuelTankCapacity" class="form-label">
+                                <i class="fas fa-gas-pump"></i>
+                                Fuel Tank (Liters)
+                            </label>
+                            <input type="number" id="fuelTankCapacity" name="Fuel Tank Capacity" class="form-input"
+                                   min="20" max="200" placeholder="e.g., 45" required>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-actions">
+                        <button type="submit" id="predictBtn" class="predict-btn">
+                            <span class="btn-text">Predict Price</span>
+                            <span id="loadingSpinner" class="loading-spinner">
+                                <i class="fas fa-spinner fa-spin"></i>
+                            </span>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Results Section -->
+                <div id="resultSection" class="result-section hidden">
+                    <div class="result-card success">
+                        <div class="result-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="result-content">
+                            <h3>Predicted Price</h3>
+                            <p class="price" id="predictedPrice">₹ 0</p>
+                            <p class="disclaimer">*This is an estimated price based on market data</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Error Section -->
+                <div id="errorSection" class="result-section hidden">
+                    <div class="result-card error">
+                        <div class="result-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="result-content">
+                            <h3>Prediction Error</h3>
+                            <p id="errorMessage">Something went wrong</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 CarValueAI. Powered by advanced machine learning algorithms.</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
